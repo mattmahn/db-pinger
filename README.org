@@ -1,0 +1,11 @@
+* db-ping
+
+Link ~ping(1)~ but for databases.  On a fixed interval, a connection will be
+opened to the database and a query will be executed.  Each time a connection is
+made, various data is recorded, such as timestamp, query result, and query
+duration.  This data is then rendered with a [[https://mustache.github.io/mustache.5.html][mustache(5)]] template and printed.
+
+** Usage
+   #+BEGIN_SRC sh
+     db-pinger ping --jdbci-uri "jdbc:postgresql://db-hostname.example.com/database?username=${USER}?password=hunter2"
+   #+END_SRC

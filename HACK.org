@@ -1,0 +1,1 @@
+To run it locally, do ~clj -A:run~

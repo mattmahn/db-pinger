@@ -1,0 +1,13 @@
+{:deps
+ {org.clojure/clojure    {:mvn/version "1.10.1"}
+  cli-matic              {:mvn/version "0.3.11"}
+  expound                {:mvn/version "0.8.4"}
+  org.clojure/core.async {:mvn/version "1.2.603"}
+  overtone/at-at         {:mvn/version "1.2.0"}
+  cljstache              {:mvn/version "2.0.5"}
+  seancorfield/next.jdbc {:mvn/version "1.0.424"}}
+ :paths ["src"]
+ :aliases
+ {:databases {:extra-deps {org.postgresql/postgresql  {:mvn/version "42.2.12.jre7"}
+                           mysql/mysql-connector-java {:mvn/version "8.0.20"}}}
+  :run       {:main-opts ["-m" "db-ping.main"]}}}
