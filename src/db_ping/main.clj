@@ -31,8 +31,14 @@
                  :unix-time      unix-time
                  :unix-time-ms   unix-time-ms})))
 
+(defn- exception-handler
+  "A 1-arity function that does nothing"
+  [^Throwable thrown]
+  (binding [*out* *err*]
+    (println "An exception occurred:" (.getMessage thrown))))
+
 (defn ping [{:keys [jdbc-uri period query template]}]
-  (run-task! #(do-the-db-thing jdbc-uri query) (* period 1000) clock)
+  (run-task! #(do-the-db-thing jdbc-uri query) (* period 1000) clock :on-exception exception-handler)
   (while true
     (when-let [d (async/<!! da-chan)]
       (println (render template d)))))
